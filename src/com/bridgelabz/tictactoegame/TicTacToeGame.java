@@ -10,8 +10,16 @@ public class TicTacToeGame {
 		char[] gameGrid = createGrid();
 		char playerSymbol = chooseSymbol();
 		char computerSymbol = playerSymbol == 'X' ? 'O' : 'X';
+		int firstPlayer = decideFirstPlayer();
 		printGrid(gameGrid);
 		playUserTurn(gameGrid, playerSymbol);
+	}
+	
+	public static int decideFirstPlayer() {
+		int firstPlayer = (int)Math.floor(Math.random()*2);
+		String firstPlayerName = firstPlayer==0 ? "Player" : "Computer";
+		System.out.println(firstPlayerName+" will play first");
+		return firstPlayer;
 	}
 	
 	public static void playUserTurn(char[] gameGrid, char playerSymbol) {
