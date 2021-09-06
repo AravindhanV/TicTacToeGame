@@ -25,6 +25,7 @@ public class TicTacToeGame {
 				System.out.println("That spot is taken. Please re-enter choice");
 			}
 		}
+		gameGrid[nextMove] = playerSymbol;
 	}
 	
 	public static char chooseSymbol() {
