@@ -10,6 +10,7 @@ public class TicTacToeGame {
 	public static char[] createGrid() {
 		char[] grid = new char[10];
 		Arrays.fill(grid, ' ');
+		grid[0] = '\u0000';
 		return grid;
 	}
 }
