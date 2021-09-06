@@ -16,12 +16,20 @@ public class TicTacToeGame {
 	
 	public static void playUserTurn(char[] gameGrid, char playerSymbol) {
 		System.out.println("Enter location of next move (1-9)");
-		int nextMove = Integer.parseInt(scanner.nextLine());
+		int nextMove;
+		while(true) {
+			nextMove = Integer.parseInt(scanner.nextLine());
+			if(gameGrid[nextMove]==' ') {
+				break;
+			} else {
+				System.out.println("That spot is taken. Please re-enter choice");
+			}
+		}
 	}
 	
 	public static char chooseSymbol() {
 		System.out.println("Which character you want to play as, X or O?");
-		return scanner.next().toUpperCase().charAt(0);
+		return scanner.nextLine().toUpperCase().charAt(0);
 	}	
 	
 	public static char[] createGrid() {
