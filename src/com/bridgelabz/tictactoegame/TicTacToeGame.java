@@ -52,7 +52,7 @@ public class TicTacToeGame {
 		return true;
 	}
 
-	public static boolean checkNextMoveWin(char player) {
+	public static boolean checkWinOrBlockMove(char player) {
 		if (gameGrid[1] == player && gameGrid[2] == player && gameGrid[3] == ' ') {
 			nextMove = 3;
 			return true;
