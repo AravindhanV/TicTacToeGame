@@ -42,6 +42,15 @@ public class TicTacToeGame {
 		return scanner.nextLine().toUpperCase().charAt(0);
 	}	
 	
+	public static boolean checkDraw() {
+		for(int index=0;index<gameGrid[index];index++) {
+			if(gameGrid[index] != ' ') {
+				return false;
+			}
+		}
+		return true;
+	}
+	
 	public static boolean checkWinner(char player) {
 		if(gameGrid[1]==player && gameGrid[2]==player && gameGrid[3]==player)
 			return true;
