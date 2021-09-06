@@ -10,6 +10,7 @@ public class TicTacToeGame {
 		char[] gameGrid = createGrid();
 		char playerSymbol = chooseSymbol();
 		char computerSymbol = playerSymbol == 'X' ? 'O' : 'X';
+		printGrid(gameGrid);
 	}
 	
 	public static char chooseSymbol() {
@@ -22,5 +23,14 @@ public class TicTacToeGame {
 		Arrays.fill(grid, ' ');
 		grid[0] = '\u0000';
 		return grid;
+	}
+	
+	public static void printGrid(char[] gameGrid) {
+		for(int index=1;index<gameGrid.length;index++) {
+			System.out.print(gameGrid[index]+"\t");
+			if(index%3==0) {
+				System.out.println();
+			}
+		}
 	}
 }
