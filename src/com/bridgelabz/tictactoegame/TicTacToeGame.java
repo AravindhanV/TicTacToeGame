@@ -11,6 +11,12 @@ public class TicTacToeGame {
 		char playerSymbol = chooseSymbol();
 		char computerSymbol = playerSymbol == 'X' ? 'O' : 'X';
 		printGrid(gameGrid);
+		playUserTurn(gameGrid, playerSymbol);
+	}
+	
+	public static void playUserTurn(char[] gameGrid, char playerSymbol) {
+		System.out.println("Enter location of next move (1-9)");
+		int nextMove = Integer.parseInt(scanner.nextLine());
 	}
 	
 	public static char chooseSymbol() {
