@@ -5,14 +5,15 @@ import java.util.Scanner;
 
 public class TicTacToeGame {
 	public static Scanner scanner = new Scanner(System.in);
+	public static char[] gameGrid = createGrid();
 	
 	public static void main(String[] args) {
-		char[] gameGrid = createGrid();
 		char playerSymbol = chooseSymbol();
 		char computerSymbol = playerSymbol == 'X' ? 'O' : 'X';
 		int firstPlayer = decideFirstPlayer();
 		printGrid(gameGrid);
 		playUserTurn(gameGrid, playerSymbol);
+		checkWinner(playerSymbol);
 	}
 	
 	public static int decideFirstPlayer() {
@@ -40,6 +41,27 @@ public class TicTacToeGame {
 		System.out.println("Which character you want to play as, X or O?");
 		return scanner.nextLine().toUpperCase().charAt(0);
 	}	
+	
+	public static boolean checkWinner(char player) {
+		if(gameGrid[1]==player && gameGrid[2]==player && gameGrid[3]==player)
+			return true;
+		if(gameGrid[4]==player && gameGrid[5]==player && gameGrid[6]==player)
+			return true;
+		if(gameGrid[7]==player && gameGrid[8]==player && gameGrid[9]==player)
+			return true;
+		if(gameGrid[1]==player && gameGrid[4]==player && gameGrid[7]==player)
+			return true;
+		if(gameGrid[2]==player && gameGrid[5]==player && gameGrid[8]==player)
+			return true;
+		if(gameGrid[3]==player && gameGrid[6]==player && gameGrid[9]==player)
+			return true;
+		if(gameGrid[1]==player && gameGrid[5]==player && gameGrid[9]==player)
+			return true;
+		if(gameGrid[3]==player && gameGrid[5]==player && gameGrid[7]==player)
+			return true;
+		return false;
+		
+	}
 	
 	public static char[] createGrid() {
 		char[] grid = new char[10];
