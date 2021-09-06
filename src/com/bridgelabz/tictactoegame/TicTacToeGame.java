@@ -51,6 +51,20 @@ public class TicTacToeGame {
 		}
 		return true;
 	}
+	
+	public static int checkFreeCorner() {
+		if(gameGrid[1]==' ') {
+			return 1;
+		} else if (gameGrid[3]==' ') {
+			return 3;
+		} else if (gameGrid[7]==' ') {
+			return 7;
+		} else if(gameGrid[9]==' ') {
+			return 9;
+		} else {
+			return -1;
+		}
+	}
 
 	public static boolean checkWinOrBlockMove(char player) {
 		if (gameGrid[1] == player && gameGrid[2] == player && gameGrid[3] == ' ') {
