@@ -65,6 +65,15 @@ public class TicTacToeGame {
 			return -1;
 		}
 	}
+	
+	public static boolean checkFreeCenter() {
+		if(gameGrid[5]==' ') {
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
 
 	public static boolean checkWinOrBlockMove(char player) {
 		if (gameGrid[1] == player && gameGrid[2] == player && gameGrid[3] == ' ') {
