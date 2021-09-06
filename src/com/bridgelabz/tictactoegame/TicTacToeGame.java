@@ -27,7 +27,12 @@ public class TicTacToeGame {
 	
 	public static void printGrid(char[] gameGrid) {
 		for(int index=1;index<gameGrid.length;index++) {
-			System.out.print(gameGrid[index]+"\t");
+			if(gameGrid[index]!=' ') {
+				System.out.print(gameGrid[index]+"\t");
+			} else {
+				System.out.print("_\t");
+			}
+
 			if(index%3==0) {
 				System.out.println();
 			}
