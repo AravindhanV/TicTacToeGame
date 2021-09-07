@@ -5,17 +5,64 @@ import java.util.Scanner;
 
 public class TicTacToeGame {
 	public static Scanner scanner = new Scanner(System.in);
-	public static char[] gameGrid = createGrid();
+	public static char[] gameGrid;
 	public static int nextMove;
 	public static int currentPlayer;
 
 	public static void main(String[] args) {
+		createGrid();
 		char playerSymbol = chooseSymbol();
 		char computerSymbol = playerSymbol == 'X' ? 'O' : 'X';
+		printGrid();
 		currentPlayer = decideFirstPlayer();
-		printGrid(gameGrid);
-		playUserTurn(gameGrid, playerSymbol);
+		while (!checkDraw()) {
+			if (currentPlayer == 0) {
+				playUserTurn(playerSymbol);
+			} else {
+				computerMove(computerSymbol, playerSymbol);
+			}
+			printGrid();
+			
+			if(checkWinner(currentPlayer == 0 ? playerSymbol : computerSymbol)) {
+				System.out.println("Player "+(currentPlayer +1)+" won");
+				break;
+			}
+			
+			currentPlayer = (currentPlayer+1) % 2;
+			
+		}
+		playUserTurn(playerSymbol);
 		checkWinner(playerSymbol);
+	}
+
+	public static void computerMove(char computerSymbol, char playerSymbol) {
+		int didComputerPlay = 0;
+		if (checkWinOrBlockMove(computerSymbol)) {
+			gameGrid[nextMove] = computerSymbol;
+			didComputerPlay = 1;
+		}
+		if (didComputerPlay == 0) {
+			if (checkWinOrBlockMove(playerSymbol)) {
+				gameGrid[nextMove] = computerSymbol;
+				didComputerPlay = 1;
+			}
+		}
+		if (didComputerPlay == 0) {
+			int index = checkFreeCorner();
+			if (index != -1)
+				gameGrid[index] = computerSymbol;
+			didComputerPlay = 1;
+		}
+		if (didComputerPlay == 0) {
+			if (checkFreeCenter())
+				gameGrid[5] = computerSymbol;
+			didComputerPlay = 1;
+		}
+		if(didComputerPlay == 0) {
+			int index = checkFreeSides();
+			gameGrid[index] = computerSymbol;
+		}
+
 	}
 
 	public static int decideFirstPlayer() {
@@ -25,7 +72,7 @@ public class TicTacToeGame {
 		return firstPlayer;
 	}
 
-	public static void playUserTurn(char[] gameGrid, char playerSymbol) {
+	public static void playUserTurn(char playerSymbol) {
 		System.out.println("Enter location of next move (1-9)");
 		while (true) {
 			nextMove = Integer.parseInt(scanner.nextLine());
@@ -214,7 +261,7 @@ public class TicTacToeGame {
 		return grid;
 	}
 
-	public static void printGrid(char[] gameGrid) {
+	public static void printGrid() {
 		for (int index = 1; index < gameGrid.length; index++) {
 			if (gameGrid[index] != ' ') {
 				System.out.print(gameGrid[index] + "\t");
